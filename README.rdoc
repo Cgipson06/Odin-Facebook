@@ -4,11 +4,11 @@ Student solution for the final rails project from www.theodinproject.com
 
 Requirements for this clone:
 
-* Use postgresql for development as well as deployment
+* Use postgresql for development as well as deployment(complete)
 
-* Users must sign in to see anything but the signin page
+* Users must sign in to see anything but the signin page(complete)
 
-* Utilize the Devise gem for authentication
+* Utilize the Devise gem for authentication(complete)
 
 * Users can send friend requests
 
