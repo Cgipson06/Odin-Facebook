@@ -1,0 +1,41 @@
+== Odin Facebook
+
+Student solution for the final rails project from www.theodinproject.com
+
+Requirements for this clone:
+
+* Use postgresql for development as well as deployment
+
+* Users must sign in to see anything but the signin page
+
+* Utilize the Devise gem for authentication
+
+* Users can send friend requests
+
+* User must accept friend request to become friends
+
+* Friend requests show up in notification section of a User's nav bar
+
+* Users can create, like, and comment on posts
+
+* Posts should be displayed with the post content, author, comments, and likes
+
+* Treat the posts index page like the real Facebooks's "Timeline" feature by showing recent posts from friends and the current user.
+
+* Users can create Profile with a Photo(utilize Gravatar)
+
+* User show page contains profile, photo, and posts
+
+* Users index page lists all users and buttons for sending Friend Requests to those who are not already friends or have a pending request
+
+* Sign in with the Omniauth Gem to allow login via Facebook.
+
+* Set up mailer to send a welcome email when a new user signs up(Utilize LetterOpener Gem for development)
+
+* Deploy to Heroku
+
+* Use Heroku extension SendGrid to send emails from Heroku.
+
+
+
+
