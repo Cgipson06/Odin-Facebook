@@ -63,32 +63,98 @@ table {
   }
   
 
+.wrap{
+background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #446ABD),
+	color-stop(1, #061126)
+);
+background-image: -o-linear-gradient(bottom, #446ABD 0%, #061126 100%);
+background-image: -moz-linear-gradient(bottom, #446ABD 0%, #061126 100%);
+background-image: -webkit-linear-gradient(bottom, #446ABD 0%, #061126 100%);
+background-image: -ms-linear-gradient(bottom, #446ABD 0%, #061126 100%);
+background-image: linear-gradient(to bottom, #446ABD 0%, #061126 100%);
+
+}
+
 
 
 .header {
   background-color: blue;
-  padding: 10;
+  padding: 15;
   margin-top: 0;
+
 
   }
 
 .user_nav {
   float: right;
-  margin: 5px;
-  
-  
-  
-
+  margin-top: 15px;
   }
 .logo {
   color: white;
   font-weight: bolder;
-  font-size: 175%;
-
+  font-size: 200%;
+  padding: 10px;
   margin: 5px;
 
   
   }
+  
+.individual_post {
+background-color: white;
+  border: 2px solid black;
+  border-radius : 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  box-shadow: 10px 10px 5px #888888;
+  p {
+     margin-top: 10px;
+  }
+  .post_time {
+    font-size: 75%;
+    }
+   .title {
+     font-weight: bolder;
+   
+   }
+   
+    }
+    
+    
+  
+  
+  
+  
+.sidebar {
+  width: 20%;
+  border: 2px solid blue;
+  float: left;
+  }
+.post_list {
+  width: 50%;
+  border: 2px solid green;
+  float: left;
+  background-color: #fcfbe3;
+  }
+  
+.friendbutton {
+  border-radius: 4px;
+  }
+  
+.footer {
+
+  position: fixed;
+  bottom: 0;
+  }
+  .footer-nav {
+    float: right;
+    }
+    
+  
+  
   
  
   

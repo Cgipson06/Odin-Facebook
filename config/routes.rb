@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
-  
+  devise_for :users, controllers: {registrations: "registrations"}
+  resources :users, only: [:index]
   devise_scope :user do
     authenticated :user do
-      root :to => 'post#index', as: :authenticated_root
+      root :to => 'posts#index', as: :authenticated_root
     end
     unauthenticated  do
       root :to => 'devise/registrations#new', as: :unauthenticated_root
@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :posts
-  
+  resources :friendship
+  resources :end_user 
+  resources :friend_request
+
+  get 'users_index' => 'users#index'
   
   
   

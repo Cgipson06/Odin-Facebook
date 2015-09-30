@@ -1,0 +1,32 @@
+<div class="wrap" >
+<div class="sidebar">
+<%= button_to "Make some new friends", users_index_path, method: :get%>
+<% if current_user.friend_requests.count != 0 %>
+  <p>You have active friend requests from the following users</p>
+  <% current_user.friend_requests.each do |a| %>
+    <p><%= User.find(a.user_id).username %></p>
+    <p> <%= button_to "Accept Friend Request", friendship_index_path, :params => {:invitee => a.user_id, :invitor => current_user.id} %></p>
+  <% end %>
+<% end %>
+<p> Friends: </p>
+<% current_user.friendships.each do |a| %>
+<%=  User.find(a.invitor).username %>
+<% end %>
+</div>
+<div class="post_list">
+
+
+<h1><%= current_user.username %>'s Wall</h1>
+
+
+<%= link_to "Share your thoughts", new_post_path  %>
+<% @posts.each do |a| %>
+    <div class="individual_post" >
+      <p class="author"><%= User.find(a.author).username %><small> wrote:</small></p>
+      <p class="title"><%= a.title %></p>
+      <p class="content"><%= a.content %></p>
+      <p class="post_time">Posted at <%= a.created_at %></p>
+    </div>
+<% end %>
+</div>
+</div>

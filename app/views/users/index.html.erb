@@ -1,1 +1,7 @@
-<h1>Logged in and at index.html</h1>
+<h1>User Index Page</h1>
+<ul>
+
+<% @users.each do |a| %>
+  <li><%=a.username %><%= button_to "Send Request", friend_request_index_path(:params => {:user_id => current_user.id, :recipient => a.id}) %></li>
+<% end %>
+</ul>

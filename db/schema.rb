@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928144408) do
+ActiveRecord::Schema.define(version: 20150930140428) do
+
+  create_table "end_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "occupation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "friend_requests", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +27,13 @@ ActiveRecord::Schema.define(version: 20150928144408) do
     t.text     "message"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer  "invitor"
+    t.integer  "invitee"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -44,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150928144408) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

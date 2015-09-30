@@ -1,0 +1,4 @@
+class EndUserController < ApplicationController
+
+
+end
