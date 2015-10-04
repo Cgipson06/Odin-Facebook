@@ -18,7 +18,9 @@ def create
     end
   end
   
-
+  #same friend request as this friendship
+  removal_friendship = current_user.friend_requests.find_by user_id: friend_params[:invitee]
+  removal_friendship.destroy
   flash[:success]= "You have a new Friend"
   redirect_to '/'
 end
