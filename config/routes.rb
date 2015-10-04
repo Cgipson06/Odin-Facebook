@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :friendship
   resources :end_user 
   resources :friend_request
+  resources :comments
+  resources :likes
 
   get 'users_index' => 'users#index'
   

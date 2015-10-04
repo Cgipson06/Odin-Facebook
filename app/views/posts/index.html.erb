@@ -26,6 +26,23 @@
       <p class="title"><%= a.title %></p>
       <p class="content"><%= a.content %></p>
       <p class="post_time">Posted at <%= a.created_at %></p>
+      <% a.likes.each do |l| %>
+        <p><%=User.find(l.user_id).username %> likes this post.</p>
+      <% end %>
+      <p> <%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %>
+      <%= link_to "Comment", new_comment_path(:author => current_user.id, :post => a.id) %></p>
+      <% a.comments.each do |c| %>
+        <div class="comments_in_post">
+          <p><%= User.find(c.user_id).username %> commented:</p>
+          <p><%= c.comment %></p>
+          
+      
+        </div>
+                <% end %>
+
+    
+    
+    
     </div>
 <% end %>
 </div>

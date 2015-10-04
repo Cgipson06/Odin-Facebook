@@ -1,0 +1,18 @@
+<div class="new_comment">
+  <div class="individual_post" >
+      <p class="author"><%= User.find(@post.author).username %><small> wrote:</small></p>
+      <p class="title"><%= @post.title %></p>
+      <p class="content"><%= @post.content %></p>
+      <p class="post_time">Posted at <%= @post.created_at %></p>
+  
+  <%= form_for @comment do |f| %>
+    <%= f.text_area :comment %>
+    <%= f.label :comment, "Comment" %>
+    <%= f.hidden_field :post_id, :value => @post.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.submit "Submit your comment" %>
+  <% end %>
+  
+
+  
+</div>
