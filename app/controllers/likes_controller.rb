@@ -14,6 +14,15 @@ class LikesController < ApplicationController
     end
   end
   
+  def destroy
+    @like = Like.find_by( :post_id => params[:id])
+    if @like.user_id = current_user.id
+      @like.destroy
+      flash[:success]= "You have unliked the post"
+      redirect_to '/'
+      end
+  end
+  
   
   private
   
