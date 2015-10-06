@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       root :to => 'posts#index', as: :authenticated_root
     end
     unauthenticated  do
-      root :to => 'devise/registrations#new', as: :unauthenticated_root
+      root :to => 'users/registrations#new', as: :unauthenticated_root
     end
   end
 

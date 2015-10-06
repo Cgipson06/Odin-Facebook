@@ -10,17 +10,17 @@ Requirements for this clone:
 
 * Utilize the Devise gem for authentication(complete)
 
-* Users can send friend requests
+* Users can send friend requests(complete)
 
-* User must accept friend request to become friends
+* User must accept friend request to become friends(complete)
 
-* Friend requests show up in notification section of a User's nav bar
+* Friend requests show up in notification section of a User's nav bar(complete)
 
-* Users can create, like, and comment on posts
+* Users can create, like, and comment on posts(complete)
 
-* Posts should be displayed with the post content, author, comments, and likes
+* Posts should be displayed with the post content, author, comments, and likes(complete)
 
-* Treat the posts index page like the real Facebooks's "Timeline" feature by showing recent posts from friends and the current user.
+* Treat the posts index page like the real Facebooks's "Timeline" feature by showing recent posts from friends and the current user.(initial complete)
 
 * Users can create Profile with a Photo(utilize Gravatar)
 

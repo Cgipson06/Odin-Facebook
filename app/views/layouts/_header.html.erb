@@ -3,7 +3,7 @@
   
   <div class='user_nav'>
     <% if user_signed_in? %>
-      <%= current_user.username %> Signed in as <%= current_user.email %>. Not you?
+      <a href="/"><%= current_user.username %></a> Signed in as <%= current_user.email %>. Not you?
       <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
     <% else %>
       <%= link_to "Sign up", new_user_registration_path %>

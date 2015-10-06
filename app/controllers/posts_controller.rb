@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     end
     
     
-    @posts = Post.where(:author => [ current_user.id, friends])
+    @posts = Post.where(:author => [ current_user.id, friends]).order(:updated_at).reverse_order
   end
     
 end

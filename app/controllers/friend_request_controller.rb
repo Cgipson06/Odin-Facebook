@@ -5,11 +5,14 @@ class FriendRequestController < ApplicationController
   
   def create
     @request = FriendRequest.new
-    @request.user_id =  params[:user_id]
-    @request.recipient_id = params[:recipient]
-    
+    # insert some kind of validation for friend request
+      @request.user_id =  params[:user_id]
+      @request.recipient_id = params[:recipient]
     if @request.save
       flash[:success] = "Your request has been sent."
+      redirect_to '/'
+    else
+      flash[:error] = "There was a problem sending your friend request"
       redirect_to '/'
     end
     

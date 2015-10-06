@@ -8,6 +8,7 @@ end
 def create 
   user_a = friend_params[:invitor]
   user_b = friend_params[:invitee]
+
   2.times do 
     @friendship = Friendship.new
     @friendship.invitor = user_a
