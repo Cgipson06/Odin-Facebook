@@ -19,7 +19,8 @@ def create
     end
   end
   
-  #same friend request as this friendship
+  #Find the friend request that initiated this action, and delete it
+  #This should be in the friend request controller under destroy and I should send over the params to take care of this. But here we are.
   removal_friendship = current_user.friend_requests.find_by user_id: friend_params[:invitee]
   removal_friendship.destroy
   flash[:success]= "You have a new Friend"

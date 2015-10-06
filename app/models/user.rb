@@ -7,7 +7,12 @@ class User < ActiveRecord::Base
   has_many :posts, foreign_key: :author
   has_one :end_user, foreign_key: :user_id
   has_many :friendships, foreign_key: :invitee
+  has_many :friends, through: :friendships, foreign_key: :invitor
   has_many :friend_requests, foreign_key: :recipient_id
   has_many :comments
+  has_many :likes
+  
+  
+  
 
 end

@@ -1,4 +1,6 @@
 <div class="wrap" >
+  
+  
   <div class="sidebar">
     <%= button_to "Make some new friends", users_index_path, method: :get%>
     <% if current_user.friend_requests.count != 0 %>
@@ -9,10 +11,14 @@
       <% end %>
     <% end %>
     <p> Friends: </p>
-    <% current_user.friendships.each do |a| %>
-      <%=  User.find(a.invitor).username %>
-    <% end %>
+    <ul>
+      <% current_user.friends.each do |a| %>
+        <li><%= a.username %></li>
+      <% end %>
+    </ul>
   </div>
+  
+  
   <div class="post_list">
     <h1><%= current_user.username %>'s Wall</h1>
     <%= link_to "Share your thoughts", new_post_path  %>
@@ -39,4 +45,6 @@
         </div>
     <% end %>
   </div>
+  
+  
 </div>
