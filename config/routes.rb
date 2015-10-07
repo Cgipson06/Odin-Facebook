@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {registrations: "registrations"}
+  devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users, only: [:index]
   devise_scope :user do
     authenticated :user do
@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   resources :likes
 
   get 'users_index' => 'users#index'
-  
   
   
   
