@@ -61,7 +61,10 @@ table {
 .alert-success {
   background-color: green;
   }
-
+.alert-error {
+ background-color: red;
+ }
+ 
 
 
 html {
@@ -162,7 +165,6 @@ html {
   position: fixed;
   bottom: 0;
   width: 100%;
-  display: inline;
   }
   
   .footer-nav {

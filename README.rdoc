@@ -20,13 +20,13 @@ Requirements for this clone:
 
 * Posts should be displayed with the post content, author, comments, and likes(complete)
 
-* Treat the posts index page like the real Facebooks's "Timeline" feature by showing recent posts from friends and the current user.(initial complete)
+* Treat the posts index page like the real Facebooks's "Timeline" feature by showing recent posts from friends and the current user.(complete)
 
-* Users can create Profile with a Photo(utilize Gravatar)
+* Users can create Profile with a Photo(Photo upload via Paperclip gem and Imagemajik)
 
 * User show page contains profile, photo, and posts
 
-* Users index page lists all users and buttons for sending Friend Requests to those who are not already friends or have a pending request
+* Users index page lists all users and buttons for sending Friend Requests to those who are not already friends or have a pending request(Need to alter to only show friendable people)
 
 * Sign in with the Omniauth Gem to allow login via Facebook.
 

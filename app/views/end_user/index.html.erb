@@ -1,7 +1,0 @@
-<h1>User Index Page</h1>
-<ul>
-
-<% @user.each do |a| %>
-  <li><%=a.name %><%= button_to "Send Request", friend_request_index_path(:params => {:user_id => a.id, :recipient => current_user.end_user.id}) %></li>
-<% end %>
-</ul>

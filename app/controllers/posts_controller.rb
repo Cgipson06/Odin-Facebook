@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   
   def index
     @posts = wall
+    
  end 
   private
   
@@ -20,14 +21,15 @@ class PostsController < ApplicationController
   end
   
   def wall # populate users wall with posts from friends and self sorted by time of update
-  #need to find the correct way to populate  Post.where(i authored or friends authored)
-    friends = []
-    current_user.friendships.each do |a|
-      friends << a.invitor
+  
+  # There is surely a way to add the collection directly to the rails sql query, but for time...
+    friendsarray = []
+    current_user.friends.each do |a|
+      friendsarray << a
     end
     
     
-    @posts = Post.where(:author => [ current_user.id, friends]).order(:updated_at).reverse_order
+    @posts = Post.where(:author => [ current_user.id, friendsarray]).order(:updated_at).reverse_order
   end
     
 end

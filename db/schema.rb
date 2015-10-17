@@ -11,20 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006134022) do
+ActiveRecord::Schema.define(version: 20151017135725) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "post_id"
     t.integer  "user_id"
     t.text     "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "end_users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.string   "occupation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -79,6 +71,15 @@ ActiveRecord::Schema.define(version: 20151006134022) do
     t.string   "username"
     t.string   "provider"
     t.string   "uid"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "job_title"
+    t.string   "job_location"
+    t.string   "college"
+    t.string   "current_city"
+    t.string   "hometown"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

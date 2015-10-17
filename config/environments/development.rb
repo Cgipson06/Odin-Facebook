@@ -1,4 +1,6 @@
 Rails.application.configure do
+  Paperclip.options[:command_path] = "C:\Program Files\ImageMagick-6.9.2-Q16"
+  Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

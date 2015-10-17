@@ -44,3 +44,6 @@ gem 'omniauth'
 # Use Figaro Gem for secure api key storage
 gem 'figaro'
 
+# Use Paperclip gem for photo upload
+gem 'paperclip', "~> 4.3"
+

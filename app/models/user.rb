@@ -6,11 +6,15 @@ class User < ActiveRecord::Base
         
   has_many :posts, foreign_key: :author
   has_one :end_user, foreign_key: :user_id
-  has_many :friendships, foreign_key: :invitee
+  has_many :friendships, foreign_key: :invitor
   has_many :friends, through: :friendships, foreign_key: :invitor
   has_many :friend_requests, foreign_key: :recipient_id
   has_many :comments
   has_many :likes
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", tiny: "40x40>" }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  
   
   
   def self.from_omniauth(auth)
@@ -18,10 +22,13 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.username = auth.info.name   # assuming the user model has a name
+      user.avatar = auth.info.image
       user.save!
     
   end
 end
+
+
 def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {registrations: 'registrations', :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show]
   devise_scope :user do
     authenticated :user do
       root :to => 'posts#index', as: :authenticated_root
@@ -12,12 +12,12 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :friendship
-  resources :end_user 
   resources :friend_request
   resources :comments
   resources :likes
 
   get 'users_index' => 'users#index'
+  resources :profile
   
   
   

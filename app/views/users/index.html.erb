@@ -1,10 +1,13 @@
 <div class="wrap">
 <h1>User Index Page</h1>
-<h2> insert logic to display pending friend requests seperately with no button.</h2>
+<h2> Should list all users not friends or pending friend requests,
+move logic to controller and add check for pending requests also.</h2>
 <ul>
 
 <% @users.each do |a| %>
+  <% unless (current_user.friends.include? a ) || (a == current_user)  %>
   <li><%=a.username %><%= button_to "Send Request", friend_request_index_path(:params => {:user_id => current_user.id, :recipient => a.id}) %></li>
+  <% end %>
 <% end %>
 </ul>
 </div>

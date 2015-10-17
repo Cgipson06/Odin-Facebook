@@ -1,0 +1,37 @@
+<div class="wrap">
+  <h1> Header h1===   Edit my profile </h1>
+  
+  <p><%= @profile.username %>   -  <%= @profile.email %></p>
+  <br>
+  <% unless @profile.avatar_file_size.nil? %>
+    <%= image_tag @profile.avatar.url(:medium) %>
+  <% end %>
+  
+  
+  <p>Upload a new profile photo </p>
+  <%= form_for @profile, url: profile_path, html: { multipart: true } do |form| %>
+    <%= form.file_field :avatar %><br>
+    <%= form.label :job_title %>
+    <%= form.text_field :job_title %><br>
+   
+    <%= form.label :job_location %>
+    <%= form.text_field :job_location %><br>
+    
+    <%= form.label :college %>
+    <%= form.text_field :college %><br>
+    
+    <%= form.label :current_city %>
+    <%= form.text_field :current_city %><br>
+    
+    <%= form.label :hometown %>
+    <%= form.text_field :hometown %><br>
+    <br>
+    <%= form.submit "Update my Profile" %>
+  <% end %>
+  
+  
+
+
+
+</div> 
+
