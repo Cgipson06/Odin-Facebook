@@ -4,7 +4,7 @@
 */
 
 html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+ p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
@@ -71,10 +71,12 @@ html {
    background-color: #E9EAED;
    }
    
-
-.wrap {
+   
+.container {
   margin-top: 85px;
-}
+  }
+  
+
 
 
 .header {
@@ -111,6 +113,8 @@ html {
   }
   
 .individual_post {
+  width: 95%;
+  margin:auto;
   background-color: white;
   border: 2px solid black;
   border-radius : 5px;
@@ -125,11 +129,13 @@ html {
     }
    .title {
      font-weight: bolder;
+     font-size: 120%;
    
    }
    .author {
      font-weight: bolder;
      color: blue;
+     font-size: 120%;
      }
      
    
@@ -148,12 +154,30 @@ html {
   width: 20%;
   border: 2px solid blue;
   float: left;
+  
+    ul li {
+      font-weight: bold;
+      color: #4e4e4e;
+      
+        p {
+        display: inline;
+        font-weight: bolder;
+        color: black;
+        }
+    }
   }
+  
+.sidebar-friends {
+  border-top: 4px solid blue;
+  }
+  
 .post_list {
-  width: 50%;
+  width: 55%;
   border: 2px solid green;
   float: left;
-  background-color: #fcfbe3;
+  background-color: #adb7c1;
+ 
+   
   }
   
 .friendbutton {
@@ -173,8 +197,14 @@ html {
     
 .comments_in_post {
   border: 2px solid black;
-  width: 100%;
+  border-radius: 5px;
+  width: 90%;
   background-color: #f3f3f3;
+  margin: 4px;
+  margin-left: 8%;
+  font-size: 80%;
+  
+  
   }
   
   

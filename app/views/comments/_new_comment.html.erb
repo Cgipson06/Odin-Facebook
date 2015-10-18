@@ -1,0 +1,6 @@
+<%= form_for @comment, url: comments_path do |t| %>
+  <%= t.text_field :comment, :placeholder => "Jump into the middle... " %>
+  <%= t.hidden_field :user_id, value: current_user.id %>
+  <%= t.hidden_field :post_id, value: post_id %>
+  <%= t.submit "Submit a comment" %>
+<% end %>

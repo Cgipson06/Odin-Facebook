@@ -5,27 +5,37 @@
     <% unless current_user.avatar_file_name.nil? %>
     <%= image_tag current_user.avatar.url(:thumb) %>
     <% end  %>
+    <div class="sidebar-friends">
     <%= button_to "Make some new friends", users_index_path, method: :get%>
     <% if current_user.friend_requests.count != 0 %>
+      
       <p>You have active friend requests from the following users</p>
       <% current_user.friend_requests.each do |a| %>
         <p><%= User.find(a.user_id).username %></p>
         <p> <%= button_to "Accept Friend Request", friendship_index_path, :params => {:invitee => a.user_id, :invitor => current_user.id} %></p>
       <% end %>
     <% end %>
-    <p> Friends: </p>
+    <p> Friends List: </p>
     <ul>
       <% current_user.friends.each do |a| %>
         <li><%= link_to a.username, user_path(a) %></li>
       <% end %>
     </ul>
+    </div>
    
   </div>
   
   
   <div class="post_list">
     <h1><%= current_user.username %>'s Wall</h1>
-    <%= link_to "Share your thoughts", new_post_path  %>
+    
+    <%= form_for @post, :url => {:action => "create"} do |t| %>
+      <%= t.text_area :content, :placeholder => "Share your Thoughts" %>
+      <%= t.hidden_field :author,value:  current_user.id %>
+      <%= t.submit "Submit Post" %>
+    <% end %>
+    
+    
     <% @posts.each do |a| %>
         <div class="individual_post" >
           <p class="author"><%= User.find(a.author).username %><small> wrote:</small></p>
@@ -33,25 +43,32 @@
           <p class="title"><%= a.title %></p>
           <p class="content"><%= a.content %></p>
           <p class="post_time">Posted at <%= a.created_at %></p>
-          <hr>
+          <% if current_user.likes.find_by(:post_id => a.id).nil? %>
+            <p><%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %></p>
+          <% end %>
+          
           <% a.likes.each do |l| %>
             <p><%=User.find(l.user_id).username %> likes this post.
             <% if l.user_id == current_user.id %>
               <%= link_to "Unlike", like_path(a.id), :method => 'delete' %>
             <% end %>
             </p>
-          <% end %>
-          
-          <% if current_user.likes.find_by(:post_id => a.id).nil? %>
-            <p><%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %>
-          <% end %>          
-          <%= link_to "Comment", new_comment_path(:author => current_user.id, :post => a.id) %></p>         
+          <% end %>   
+          <hr>      
+               
           <% a.comments.each do |c| %>
             <div class="comments_in_post">
               <p><%= User.find(c.user_id).username %> commented:</p>
               <p><%= c.comment %></p>
+              <% if c.user_id == current_user.id %>
+                <%= link_to "delete comment", comment_path(c.id), :method => "delete" %>
+              <% end %>
             </div>
           <% end %>
+          
+          
+          <%= render 'comments/new_comment', :user_id => current_user.id, :post_id => a.id %>
+                
         </div>
     <% end %>
   </div>

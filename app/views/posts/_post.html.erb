@@ -1,0 +1,13 @@
+<div class="post-creation" >
+  <%= form_for(@post, url: posts_path) do |f| %>
+    <%= f.label :title, "Title of Post" %>
+    <%= f.text_field :title %><br>
+    
+    <%= f.label :content, "Post" %>
+    <%= f.text_area :content %>
+    
+    <%= f.hidden_field :author,value:  current_user.id %>
+    
+    <%= f.submit "Create this Post" %>
+  <% end %>
+</div>

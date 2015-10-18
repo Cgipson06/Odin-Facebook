@@ -17,13 +17,23 @@ class CommentsController < ApplicationController
     end
   end
   
+  def destroy
+    @comment = Comment.find(comment_params[:id])
+    if @comment.user_id == current_user.id
+      @comment.destroy
+      flash[:success] = "Your comment has been archived against your wishes ;)   "
+    end
+    redirect_to '/'
+  end
+  
+  
   
   
   
   private
   
   def comment_params
-    params.permit( :author, :post)
+    params.permit( :author, :post, :id)
   end
   
   def create_params

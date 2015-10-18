@@ -24,11 +24,11 @@ Requirements for this clone:
 
 * Users can create Profile with a Photo(Photo upload via Paperclip gem and Imagemajik)
 
-* User show page contains profile, photo, and posts
+* User show page contains profile, photo, and posts(complete)
 
 * Users index page lists all users and buttons for sending Friend Requests to those who are not already friends or have a pending request(Need to alter to only show friendable people)
 
-* Sign in with the Omniauth Gem to allow login via Facebook.
+* Sign in with the Omniauth Gem to allow login via Facebook.(complete)
 
 * Set up mailer to send a welcome email when a new user signs up(Utilize LetterOpener Gem for development)
 

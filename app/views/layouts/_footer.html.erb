@@ -1,7 +1,10 @@
 <div class = "footer" >
   <div class = "footer_nav" >
-    <a href="/">My Wall</a>
-    <%= link_to "Edit my Profile", edit_profile_path(current_user), method: 'get' %>
+
+    <% unless current_user.nil? %>
+          <a href="/">My Wall</a>
+          <%= link_to "Edit my Profile", edit_profile_path(current_user), method: 'get' %>
+    <% end %>
   </div>
   <div class = "signature" >
     <p>Created by <a href="http://www.github.com/cgipson06">Cody Gipson</a></p>

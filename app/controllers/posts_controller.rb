@@ -12,6 +12,8 @@ class PostsController < ApplicationController
   
   def index
     @posts = wall
+    @post = Post.new
+    @comment = Comment.new
     
  end 
   private

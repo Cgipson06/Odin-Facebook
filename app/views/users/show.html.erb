@@ -1,12 +1,22 @@
 <div class="wrap">
+  <h1><%= @user.username %>'s page </h1>
   <div class="sidebar">
-  
-  <p>Users#show  Should display profile, photo as well as posts from this user </p>
-  <%= @user.username %><br>  
-  <%= @user.email %><br>
-  <%= image_tag @user.avatar.url(:thumb) %><br>
-  
+    
+      <p>email : <%= @user.email %></p>
+      <ul>
+        <li>Works as a(n) <p><%= @user.job_title%></p> in <p><%= @user.job_location %></p><li>
+        <li>Studied @ <p><%= @user.college %></p></li>
+        <li>Lives in <p><%= @user.current_city %></p></li>
+        <li>Originally from <p><%= @user.hometown %></p></li>
+        
+      </ul>
+      <% unless @user.avatar_file_size.nil? %>
+        <%= image_tag @user.avatar.url(:medium) %><br>
+      <% end %>
   </div>
+  
+  
+  
   <div class="post_list">
   <% @user.posts.each do |a| %>
         <div class="individual_post" >
@@ -27,11 +37,15 @@
           <% if current_user.likes.find_by(:post_id => a.id).nil? %>
             <p><%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %>
           <% end %>          
-          <%= link_to "Comment", new_comment_path(:author => current_user.id, :post => a.id) %></p>         
+          <%= render 'comments/new_comment', :user_id => current_user.id, :post_id => a.id %>
+                  
           <% a.comments.each do |c| %>
             <div class="comments_in_post">
               <p><%= User.find(c.user_id).username %> commented:</p>
               <p><%= c.comment %></p>
+              <% if c.user_id == current_user.id %>
+                <%= link_to "delete comment", comment_path(c.id), :method => "delete" %>
+              <% end %>
             </div>
           <% end %>
         </div>
