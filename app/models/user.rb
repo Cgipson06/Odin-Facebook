@@ -9,10 +9,12 @@ class User < ActiveRecord::Base
   has_many :friendships, foreign_key: :invitor
   has_many :friends, through: :friendships, foreign_key: :invitor
   has_many :friend_requests, foreign_key: :recipient_id
-  has_many :pending_friend_requests, through: :friend_requests, :foreign_key => user_id
+  has_many :pending_requests, foreign_key: "user_id", class_name: "FriendRequest"
+ 
   has_many :comments
   has_many :likes
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", tiny: "40x40>" }
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", tiny: "40x40>" }, :default_url => ':placeholder'
+  #:placeholder points to the paperclip initializer for stability through to production
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   

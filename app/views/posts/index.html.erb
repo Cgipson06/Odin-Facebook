@@ -30,7 +30,7 @@
     <h1><%= current_user.username %>'s Wall</h1>
     
     <%= form_for @post, :url => {:action => "create"} do |t| %>
-      <%= t.text_area :content, :placeholder => "Share your Thoughts" %>
+      <%= t.text_area :content, :placeholder => "Share your thoughts...", rows: 4, cols: 40 %>
       <%= t.hidden_field :author,value:  current_user.id %>
       <%= t.submit "Submit Post" %>
     <% end %>
@@ -38,7 +38,10 @@
     
     <% @posts.each do |a| %>
         <div class="individual_post" >
-          <p class="author"><%= User.find(a.author).username %><small> wrote:</small></p>
+          <p class="author">
+          <%= image_tag User.find(a.author).avatar.url(:tiny) %>
+          <%= User.find(a.author).username %><small> wrote:</small></p>
+          
           <hr>
           <p class="title"><%= a.title %></p>
           <p class="content"><%= a.content %></p>
@@ -58,7 +61,7 @@
                
           <% a.comments.each do |c| %>
             <div class="comments_in_post">
-              <p><%= User.find(c.user_id).username %> commented:</p>
+              <p><%= image_tag c.user.avatar.url(:tiny) %><%= User.find(c.user_id).username %> commented:</p>
               <p><%= c.comment %></p>
               <% if c.user_id == current_user.id %>
                 <%= link_to "delete comment", comment_path(c.id), :method => "delete" %>
