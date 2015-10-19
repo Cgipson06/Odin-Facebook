@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_one :end_user, foreign_key: :user_id
   has_many :friendships, foreign_key: :invitor
   has_many :friends, through: :friendships, foreign_key: :invitor
-  has_many :friend_requests, foreign_key: :recipient_id
+  has_many :friend_requests, foreign_key: "recipient_id"
   has_many :pending_requests, foreign_key: "user_id", class_name: "FriendRequest"
  
   has_many :comments

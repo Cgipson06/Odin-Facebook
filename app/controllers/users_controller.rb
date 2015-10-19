@@ -6,7 +6,8 @@ def edit
   end
 
 def index
-    @users = User.all
+
+    @users = User.where.not(:id => [current_user, current_user.friends.all.to_a, current_user.pending_requests.pluck(:recipient_id)])
   end
 def show
   @user = User.find(params[:id])
