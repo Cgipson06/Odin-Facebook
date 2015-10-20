@@ -1,4 +1,4 @@
-<div class="wrap">
+
   <h1><%= @user.username %>'s page </h1>
   <div class="sidebar">
     
@@ -14,42 +14,62 @@
         <%= image_tag @user.avatar.url(:medium) %><br>
       <% end %>
   </div>
-  
+
   
   
   <div class="post_list">
-  <% @user.posts.each do |a| %>
+  <h1 class="wall-header"><%= current_user.username %>'s Wall</h1>
+    
+
+    
+    
+      <% @user.posts.each do |a| %>
         <div class="individual_post" >
-          <p class="author"><%= User.find(a.author).username %><small> wrote:</small></p>
-          <hr>
-          <p class="title"><%= a.title %></p>
-          <p class="content"><%= a.content %></p>
-          <p class="post_time">Posted at <%= a.created_at %></p>
-          <hr>
-          <% a.likes.each do |l| %>
-            <p><%=User.find(l.user_id).username %> likes this post.
-            <% if l.user_id == current_user.id %>
-              <%= link_to "Unlike", like_path(a.id), :method => 'delete' %>
-            <% end %>
-            </p>
-          <% end %>
-          
-          <% if current_user.likes.find_by(:post_id => a.id).nil? %>
-            <p><%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %>
-          <% end %>          
-          <%= render 'comments/new_comment', :user_id => current_user.id, :post_id => a.id %>
-                  
-          <% a.comments.each do |c| %>
-            <div class="comments_in_post">
-              <p><%= User.find(c.user_id).username %> commented:</p>
-              <p><%= c.comment %></p>
-              <% if c.user_id == current_user.id %>
-                <%= link_to "delete comment", comment_path(c.id), :method => "delete" %>
+           <div class="author">
+              <%= link_to image_tag(a.author.avatar.url(:tiny)), user_path(a.author) %>
+              <div class="author-info">
+                <p class="post-author"><%= User.find(a.author).username %>
+                <p id="tiny-time"><%= time_ago_in_words(a.created_at) %> ago:<p>
+              </div>
+           </div>
+           <hr>
+           <p class="title"><%= a.title %></p>
+           <p id="comment-body"><%= a.content %></p>
+              
+           <% if current_user.likes.find_by(:post_id => a.id).nil? %>
+             <p><%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %></p>
+           <% end %>
+              
+           <div class="likes-container">
+           <% if a.likes.count > 1 %>
+              <%=a.likes.sample.user.username %> and <%= ((a.likes.count) - 1) %> others like this post.
+           <% else %>
+             <% unless a.likes.first.nil? %>
+                <%= a.likes.first.user.username %> likes this post.
+                <% if a.likes.first.user == current_user %>
+                  <%= link_to "Unlike", like_path(a.id), :method => 'delete' %>
+                <% end %>
               <% end %>
-            </div>
-          <% end %>
+           <% end %> 
+           </div>
+         
+      <hr>      
+      <% a.comments.each do |c| %>
+        <div class="comments_in_post">
+           <div class="author">
+             <%= link_to image_tag(c.user.avatar.url(:tiny)), user_path(c.user) %>
+             <div class="author-info">
+               <div><%= link_to c.user.username, c.user %> <small>commented:</small>   
+               <%= c.comment %></div>
+               <% if c.user_id == current_user.id %>
+                 <%= link_to "delete comment", comment_path(c.id), :method => "delete" %>
+               <% end %>
+             </div>
+           </div>
         </div>
-    <% end %>
-  </div>
+      <% end %>
+      <%= render 'comments/new_comment', :user_id => current_user.id, :post_id => a.id %>
+    </div>
+  <% end %>
   </div>
 </div>

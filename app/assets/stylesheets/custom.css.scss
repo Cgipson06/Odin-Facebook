@@ -47,6 +47,10 @@ table {
 	border-spacing: 0;
 }
 
+small {
+  font-size: 80%;
+  }
+  
 .alert {
    font-weight: bold;
    -moz-border-radius: 4px 4px 4px 4px;
@@ -69,6 +73,7 @@ table {
 
 html {
    background-color: #E9EAED;
+   font-family: 'Open Sans', sans-serif;
    }
    
    
@@ -111,7 +116,16 @@ html {
 
   
   }
+.content {
+     margin-top: 10px;
+     margin-left: 5px;
+     font-size: 110%;
+     font-weight: 550;
   
+
+
+}
+ 
 .individual_post {
   width: 95%;
   margin:auto;
@@ -121,25 +135,27 @@ html {
   margin-top: 5px;
   margin-bottom: 5px;
   box-shadow: 10px 10px 5px #888888;
-  p {
-     margin-top: 10px;
-  }
-  .post_time {
+
+   
+   }
+.post_time {
     font-size: 75%;
     }
-   .title {
+.title {
      font-weight: bolder;
      font-size: 120%;
    
    }
-   .author {
-     clear: left;
+.author {
+     clear: both;
      
      img {
        width: 40;
        float: left;
      }
-    .author_info {
+     }
+     
+.author_info {
         float: left;
         display: block;
         p {
@@ -149,9 +165,7 @@ html {
           }
         }
           
-     }
-        
- }
+
 .post-creation {
   margin-top: 65px;
 }
@@ -169,7 +183,10 @@ html {
 
   }
   
-    
+.likes-container {
+  font-size: 80%;
+}
+  
   
   
   
@@ -177,7 +194,7 @@ html {
 .sidebar {
    background-color: #E9EAED;
   width: 20%;
-  border: 2px solid blue;
+  border: 2px solid black;
   float: left;
   
     ul li {
@@ -196,14 +213,15 @@ html {
   }
   
 .sidebar-friends {
-  border-top: 4px solid blue;
+  border-top: 2px solid blue;
   }
   
 .post_list {
   width: 55%;
-  border: 2px solid green;
+  border: 2px solid black;
   float: left;
   background-color: #adb7c1;
+  border-radius: 4px;
  
    
   }
@@ -225,8 +243,8 @@ html {
     
 .comments_in_post {
 
-
-  padding: 0px;
+  border: 1px solid black;
+  padding:5px;
   background: #FFFFFF;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -236,15 +254,27 @@ html {
   margin: 4px;
   margin-left: 8%;
   font-size: 80%;
+  overflow: hidden;
+  
   
   p {
-    padding: 5px;
+    padding: 3px;
     }
-    
+   
   
   }
+#comment-body {
+  padding: 8px;
+  font-size: 120%;
+  font-weight: 550;
 
 
+}
+
+.wall-header {
+  text-size: 120%;
+  }
+  
 
  
   
@@ -252,6 +282,15 @@ html {
   margin: 5px;
   }
   
+ .wall-header {
+  padding: 5px;
+}
+.new_post {
+  margin-left: 10px;
+}
+.right-side {
+  float: right;
+}
   
  
   

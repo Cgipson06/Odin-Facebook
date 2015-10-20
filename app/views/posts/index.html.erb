@@ -1,89 +1,90 @@
-<div class="wrap" >
-  
-  
-  <div class="sidebar">
+<div class="sidebar">
     <% unless current_user.avatar_file_name.nil? %>
-    <%= image_tag current_user.avatar.url(:thumb) %>
+      <%= image_tag current_user.avatar.url(:medium) %>
     <% end  %>
+    
     <div class="sidebar-friends">
-    <%= button_to "Make some new friends", users_index_path, method: :get%>
-    <% if current_user.friend_requests.count != 0 %>
+      <%= button_to "Make some new friends", users_index_path, method: :get%>
       
-      <p>You have active friend requests from the following users</p>
-      <% current_user.friend_requests.each do |a| %>
-        <p><%= image_tag a.user.avatar.url(:tiny) %>
-        <%= User.find(a.user_id).username %></p>
-        <p> <%= button_to "Accept Friend Request", friendship_index_path, :params => {:invitee => a.user_id, :invitor => current_user.id} %></p>
-        <p> <%= button_to "Delete Friend Request", friend_request_path(a), :params => {:user_id => a.user_id, :recipient_id => current_user.id}, method: :delete %></p>
+      <% if current_user.friend_requests.count != 0 %>
+        <p>You have active friend requests from the following users</p>
+        <% current_user.friend_requests.each do |a| %>
+          <p><%= link_to image_tag(a.user.avatar.url(:tiny)), user_path(a.user) %>
+          <%= User.find(a.user_id).username %></p>
+          <p> <%= button_to "Accept Friend Request", friendship_index_path, :params => {:invitee => a.user_id, :invitor => current_user.id} %></p>
+          <p> <%= button_to "Delete Friend Request", friend_request_path(a), :params => {:user_id => a.user_id, :recipient_id => current_user.id}, method: :delete %></p>
+        <% end %>
       <% end %>
-    <% end %>
-    <p> Friends List: </p>
-    <ul>
-      <% current_user.friends.each do |a| %>
-        <li>
-          <%= image_tag a.avatar.url(:tiny) %>
-          <%= link_to a.username, user_path(a) %> 
-        </li>
-      <% end %>
-    </ul>
+      <p> Friends List: </p>
+      <ul>
+        <% current_user.friends.each do |a| %>
+          <li>
+            <%= image_tag a.avatar.url(:tiny) %>
+            <%= link_to a.username, user_path(a) %> 
+          </li>
+        <% end %>
+      </ul>
     </div>
-   
-  </div>
+</div>
   
   
-  <div class="post_list">
-    <h1><%= current_user.username %>'s Wall</h1>
+<div class="post_list">
+  <h1 class="wall-header"><%= current_user.username %>'s Wall</h1>
     
-    <%= form_for @post, :url => {:action => "create"} do |t| %>
-      <%= t.text_area :content, :placeholder => "Share your thoughts...", rows: 4, cols: 40 %>
-      <%= t.hidden_field :author,value:  current_user.id %>
-      <%= t.submit "Submit Post" %>
-    <% end %>
+  <%= form_for @post, :url => {:action => "create"} do |t| %>
+    <%= t.text_area :content, :placeholder => "Share your thoughts...", rows: 4, cols: 40 %>
+    <%= t.hidden_field :author,value:  current_user.id %>
+    <%= t.submit "Submit Post" %>
+  <% end %>
     
     
-    <% @posts.each do |a| %>
+      <% @posts.each do |a| %>
         <div class="individual_post" >
-          <div class="author">
-            <%= image_tag User.find(a.author).avatar.url(:tiny) %>
-            <div class="author-info">
-              <p class="post-author"><%= User.find(a.author).username %>
-              <p id="tiny-time"><%= time_ago_in_words(a.created_at) %> ago:<p>
+           <div class="author">
+              <%= link_to image_tag(a.author.avatar.url(:tiny)), user_path(a.author) %>
+              <div class="author-info">
+                <p class="post-author"><%= User.find(a.author).username %>
+                <p id="tiny-time"><%= time_ago_in_words(a.created_at) %> ago:<p>
+              </div>
+           </div>
+           <hr>
+           <p class="title"><%= a.title %></p>
+           <p id="comment-body"><%= a.content %></p>
               
-            </div>
-          </div>
-          <hr>
-          <p class="title"><%= a.title %></p>
-          <p class="content"><%= a.content %></p>
-          
-          <% if current_user.likes.find_by(:post_id => a.id).nil? %>
-            <p><%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %></p>
-          <% end %>
-          
-          <% a.likes.each do |l| %>
-            <p><%=User.find(l.user_id).username %> likes this post.
-            <% if l.user_id == current_user.id %>
-              <%= link_to "Unlike", like_path(a.id), :method => 'delete' %>
-            <% end %>
-            </p>
-          <% end %>   
-          <hr>      
-               
-          <% a.comments.each do |c| %>
-            <div class="comments_in_post">
-              <p><%= image_tag c.user.avatar.url(:tiny) %><%= User.find(c.user_id).username %> commented:</p>
-              <p><%= c.comment %></p>
-              <% if c.user_id == current_user.id %>
-                <%= link_to "delete comment", comment_path(c.id), :method => "delete" %>
+           <% if current_user.likes.find_by(:post_id => a.id).nil? %>
+             <p><%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %></p>
+           <% end %>
+              
+           <div class="likes-container">
+           <% if a.likes.count > 1 %>
+              <%=a.likes.sample.user.username %> and <%= ((a.likes.count) - 1) %> others like this post.
+           <% else %>
+             <% unless a.likes.first.nil? %>
+                <%= a.likes.first.user.username %> likes this post.
+                <% if a.likes.first.user == current_user %>
+                  <%= link_to "Unlike", like_path(a.id), :method => 'delete' %>
+                <% end %>
               <% end %>
-            </div>
-          <% end %>
-          
-          
-          <%= render 'comments/new_comment', :user_id => current_user.id, :post_id => a.id %>
-                
+           <% end %> 
+           </div>
+         
+      <hr>      
+      <% a.comments.each do |c| %>
+        <div class="comments_in_post">
+           <div class="author">
+             <%= link_to image_tag(c.user.avatar.url(:tiny)), user_path(c.user) %>
+             <div class="author-info">
+               <div><%= link_to c.user.username, c.user %> <small>commented:</small>   
+               <%= c.comment %></div>
+               <% if c.user_id == current_user.id %>
+                 <%= link_to "delete comment", comment_path(c.id), :method => "delete" %>
+               <% end %>
+             </div>
+           </div>
         </div>
-    <% end %>
+      <% end %>
+      <%= render 'comments/new_comment', :user_id => current_user.id, :post_id => a.id %>
+    </div>
+  <% end %>
   </div>
-  
-  
 </div>

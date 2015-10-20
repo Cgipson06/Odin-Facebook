@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
  
   has_many :comments
   has_many :likes
-  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", tiny: "40x40>" }, :default_url => ':placeholder'
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>", tiny: "50x50>" }, :default_url => ':placeholder'
   #:placeholder points to the paperclip initializer for stability through to production
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
