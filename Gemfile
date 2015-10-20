@@ -50,3 +50,7 @@ gem 'figaro'
 # Use Paperclip gem for photo upload
 gem 'paperclip', "~> 4.3"
 
+gem 'rails_12factor', group: :production
+
+
+
