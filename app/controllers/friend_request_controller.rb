@@ -17,7 +17,14 @@ class FriendRequestController < ApplicationController
     end
     
   end  
-  
+   def destroy
+     @request = FriendRequest.find(params[:id])
+     if @request.user_id == current_user.id || @request.recipient_id == current_user.id
+       @request.destroy
+       flash[:success] = "You have deleted the request"
+      end
+      redirect_to '/'  
+    end      
   
   
   private

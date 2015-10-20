@@ -133,16 +133,41 @@ html {
    
    }
    .author {
-     font-weight: bolder;
-     color: blue;
-     font-size: 120%;
-     }
+     clear: left;
      
-   
-    }
+     img {
+       width: 40;
+       float: left;
+     }
+    .author_info {
+        float: left;
+        display: block;
+        p {
+          font-size: 50%;
+          color: black;
+          font-weight: normal;
+          }
+        }
+          
+     }
+        
+ }
 .post-creation {
   margin-top: 65px;
 }
+.post-author {
+  font-size: 120%;
+  font-weight: bolder;
+  color: blue;
+  
+}
+#tiny-time {
+  font-size: 80%;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+
+  }
   
     
   
@@ -158,6 +183,9 @@ html {
     ul li {
       font-weight: bold;
       color: #4e4e4e;
+      padding-bottom: 5px;
+      text-decoration: none;
+      
       
         p {
         display: inline;
@@ -191,13 +219,18 @@ html {
   width: 100%;
   }
   
-  .footer-nav {
+.footer-nav {
     float: right;
     }
     
 .comments_in_post {
-  border: 2px solid black;
-  border-radius: 5px;
+
+
+  padding: 0px;
+  background: #FFFFFF;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
   width: 90%;
   background-color: #f3f3f3;
   margin: 4px;
@@ -209,6 +242,14 @@ html {
     }
     
   
+  }
+
+
+
+ 
+  
+.button_to {
+  margin: 5px;
   }
   
   

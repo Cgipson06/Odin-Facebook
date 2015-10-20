@@ -23,14 +23,6 @@ class PostsController < ApplicationController
   end
   
   def wall # populate users wall with posts from friends and self sorted by time of update
-  
-  # There is surely a way to add the collection directly to the rails sql query, but for time...
-    friendsarray = []
-    current_user.friends.each do |a|
-      friendsarray << a
-    end
-    
-    
     @posts = Post.where(:author => [ current_user.id, current_user.friends.to_a]).order(:updated_at).reverse_order
   end
     

@@ -11,14 +11,19 @@
       
       <p>You have active friend requests from the following users</p>
       <% current_user.friend_requests.each do |a| %>
-        <p><%= User.find(a.user_id).username %></p>
+        <p><%= image_tag a.user.avatar.url(:tiny) %>
+        <%= User.find(a.user_id).username %></p>
         <p> <%= button_to "Accept Friend Request", friendship_index_path, :params => {:invitee => a.user_id, :invitor => current_user.id} %></p>
+        <p> <%= button_to "Delete Friend Request", friend_request_path(a), :params => {:user_id => a.user_id, :recipient_id => current_user.id}, method: :delete %></p>
       <% end %>
     <% end %>
     <p> Friends List: </p>
     <ul>
       <% current_user.friends.each do |a| %>
-        <li><%= link_to a.username, user_path(a) %></li>
+        <li>
+          <%= image_tag a.avatar.url(:tiny) %>
+          <%= link_to a.username, user_path(a) %> 
+        </li>
       <% end %>
     </ul>
     </div>
@@ -38,14 +43,18 @@
     
     <% @posts.each do |a| %>
         <div class="individual_post" >
-          <p class="author">
-          <%= image_tag User.find(a.author).avatar.url(:tiny) %>
-          <%= User.find(a.author).username %><small> wrote:</small></p>
-          
+          <div class="author">
+            <%= image_tag User.find(a.author).avatar.url(:tiny) %>
+            <div class="author-info">
+              <p class="post-author"><%= User.find(a.author).username %>
+              <p id="tiny-time"><%= time_ago_in_words(a.created_at) %> ago:<p>
+              
+            </div>
+          </div>
           <hr>
           <p class="title"><%= a.title %></p>
           <p class="content"><%= a.content %></p>
-          <p class="post_time">Posted at <%= a.created_at %></p>
+          
           <% if current_user.likes.find_by(:post_id => a.id).nil? %>
             <p><%= button_to "Like this post", likes_path, :params => {:user_id => current_user.id, :post_id => a.id} %></p>
           <% end %>
