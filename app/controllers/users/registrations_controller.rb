@@ -10,7 +10,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
     def create
       super
-      UserMailer.welcome_email(@user).deliver 
+      # commented out due to mailer service pending approval
+      #UserMailer.welcome_email(@user).deliver        
     end
 
   # GET /resource/edit
