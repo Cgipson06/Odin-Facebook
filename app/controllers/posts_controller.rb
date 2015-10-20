@@ -4,9 +4,11 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = Post.new(post_params)
+    @post = Post.new
+    @post.author = User.find(post_params[:author])
+    @post.content = post_params[:content]
     @post.save
-    redirect_to '/'
+    redirect_to authenticated_root_path
   end
   
   

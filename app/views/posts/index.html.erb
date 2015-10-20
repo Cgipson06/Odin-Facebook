@@ -33,7 +33,7 @@
     
   <%= form_for @post, :url => {:action => "create"} do |t| %>
     <%= t.text_area :content, :placeholder => "Share your thoughts...", rows: 4, cols: 40 %>
-    <%= t.hidden_field :author,value:  current_user.id %>
+    <%= t.hidden_field :author ,value:  current_user.id %>
     <%= t.submit "Submit Post" %>
   <% end %>
     
