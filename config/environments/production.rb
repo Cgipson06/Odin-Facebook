@@ -85,7 +85,8 @@ Rails.application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
       },
     :url =>':s3_domain_url',
-    :path => '/:class/:attachment/:id_partition/:style/:filename'
+    :path => '/:class/:attachment/:id_partition/:style/:filename',
+    :default_url => '/images/missing_:style.jpg'
     }
     
 end
