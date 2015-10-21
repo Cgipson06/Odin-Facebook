@@ -1,10 +1,10 @@
 <div class="wrap">
-  <h1>User Index Page</h1>
+  <h1>All Users</h1>
 
   <ul>
 
   <% @users.each do |a| %>
-    <li><%=a.username %><%= button_to "Send Request", friend_request_index_path(:params => {:user_id => current_user.id, :recipient => a.id}) %></li>
+    <li><%= link_to image_tag(a.avatar(:tiny)), user_path(a) %><%=a.username %><%= button_to "Send Request", friend_request_index_path(:params => {:user_id => current_user.id, :recipient => a.id}) %></li>
 
   <% end %>
   </ul>

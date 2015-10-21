@@ -3,6 +3,8 @@
   <div class="sidebar">
     
       <p>email : <%= @user.email %></p>
+      
+      <%= image_tag @user.avatar.url(:medium) %><br>
       <ul>
         <li>Works as a(n) <p><%= @user.job_title%></p> in <p><%= @user.job_location %></p><li>
         <li>Studied @ <p><%= @user.college %></p></li>
@@ -10,9 +12,9 @@
         <li>Originally from <p><%= @user.hometown %></p></li>
         
       </ul>
-      <% unless @user.avatar_file_size.nil? %>
-        <%= image_tag @user.avatar.url(:medium) %><br>
-      <% end %>
+      
+        
+      
   </div>
 
   
