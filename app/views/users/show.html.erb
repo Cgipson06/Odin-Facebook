@@ -1,10 +1,8 @@
-
-  <h1><%= @user.username %>'s page </h1>
   <div class="sidebar">
     
-      <p>email : <%= @user.email %></p>
       
-      <%= image_tag @user.avatar.url(:medium) %><br>
+      
+      <%= image_tag @user.avatar.url(:medium), :style => "width:100%" %><br>
       <ul>
         <li>Works as a(n) <p><%= @user.job_title%></p> in <p><%= @user.job_location %></p><li>
         <li>Studied @ <p><%= @user.college %></p></li>
@@ -20,12 +18,12 @@
   
   
   <div class="post_list">
-  <h1 class="wall-header"><%= current_user.username %>'s Wall</h1>
+  <h1 class="wall-header"><%= @user.username %>'s Wall</h1>
     
 
     
     
-      <% @user.posts.each do |a| %>
+      <% @user.posts.reverse_each do |a| %>
         <div class="individual_post" >
            <div class="author">
               <%= link_to image_tag(a.author.avatar.url(:tiny)), user_path(a.author) %>
