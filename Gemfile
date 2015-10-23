@@ -41,7 +41,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 # Use Omniauth for authentication via facebook.
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', "~> 1.4"
 gem 'omniauth'
 
 # Use Figaro Gem for secure api key storage
