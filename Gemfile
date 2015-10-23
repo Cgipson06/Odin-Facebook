@@ -26,7 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   
   gem 'letter_opener'
-  
+  # Use Figaro Gem for secure api key storage
+  gem 'figaro'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -44,8 +45,8 @@ gem 'devise'
 gem 'omniauth-facebook', "~> 1.4"
 gem 'omniauth'
 
-# Use Figaro Gem for secure api key storage
-gem 'figaro'
+
+
 
 # Use Paperclip gem for photo upload
 gem 'paperclip', "~> 4.3"
