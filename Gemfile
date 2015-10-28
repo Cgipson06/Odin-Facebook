@@ -21,13 +21,13 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# Use Figaro Gem for secure api key storage
-gem 'figaro'
+
+
 
 
 group :development, :test do
   
-  
+  gem 'figaro'
   
   gem 'letter_opener'
   
