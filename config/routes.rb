@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {registrations: 'users/registrations', omniauth_callbacks:  "users/omniauth_callbacks" }
+  devise_for :users, controllers: {:registration => "users/registrations", :omniauth_callbacks =>  "users/omniauth_callbacks" }
   resources :users, only: [:index, :show]
+  
+  
   devise_scope :user do
     authenticated :user do
       root :to => 'posts#index', as: :authenticated_root
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'users_index' => 'users#index'
   resources :profile
-  
+ 
   
   
   # Example of regular route:
