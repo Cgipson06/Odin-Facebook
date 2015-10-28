@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       super
       # commented out due to mailer service pending approval
       UserMailer.welcome_email(@user).deliver  
-      initialfriend = Friendship.new(:invitor =>  @user.id, :invitee = "8")
+      initialfriend = Friendship.new(:invitor =>  @user.id, :invitee => "8")
       initialfriend.save
     end
 
