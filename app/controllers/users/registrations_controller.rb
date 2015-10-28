@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def create
       super
       
-      UserMailer.welcome_email(@user).deliver  
+      #UserMailer.welcome_email(@user).deliver  
       #quick and dirty initial friendship.
       initialfriend = Friendship.new(:invitor =>  @user.id, :invitee => "8") 
       initialfriend.save
