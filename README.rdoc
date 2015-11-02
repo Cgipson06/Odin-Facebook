@@ -1,6 +1,6 @@
 == Odin Facebook
 
-Student solution for the final rails project from www.theodinproject.com
+Student solution for the final rails project from www.theodinproject.com. Deployed at http://vast-forest-5750.herokuapp.com .
 
 Requirements for this clone:
 
@@ -28,13 +28,13 @@ Requirements for this clone:
 
 * Users index page lists all users and buttons for sending Friend Requests to those who are not already friends or have a pending request(complete)
 
-* Sign in with the Omniauth Gem to allow login via Facebook.(complete)
+* Sign in with the Omniauth Gem to allow login via Facebook.(complete)(pending app approval the signup is only for test users of the app.)
 
 * Set up mailer to send a welcome email when a new user signs up(Utilize LetterOpener Gem for development)(complete)
 
-* Deploy to Heroku
+* Deploy to Heroku(  http://vast-forest-5750.herokuapp.com )
 
-* Use Heroku extension SendGrid to send emails from Heroku.
+* Use Heroku extension SendGrid to send emails from Heroku.(complete)
 
 
 
