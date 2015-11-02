@@ -120,7 +120,7 @@ html {
      margin-top: 10px;
      margin-left: 5px;
      font-size: 110%;
-     font-weight: 550;
+     
   
 
 
@@ -150,7 +150,7 @@ html {
      clear: both;
      
      img {
-       width: 40;
+       width: 40px;
        float: left;
      }
      }
@@ -192,7 +192,8 @@ html {
   
   
 .sidebar {
-   background-color: #E9EAED;
+  margin-left: 10px;
+  background-color: #E9EAED;
   width: 20%;
   border: 2px solid black;
   float: left;
@@ -236,7 +237,8 @@ html {
 
   position: fixed;
   bottom: 0;
-  width: 100%;
+  right: 0;
+  width: 50%;
   }
   
 .footer-nav {
@@ -268,7 +270,7 @@ html {
 #comment-body {
   padding: 8px;
   font-size: 120%;
-  font-weight: 550;
+
 
 
 }
